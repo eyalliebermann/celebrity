@@ -1,0 +1,24 @@
+{
+  "name": "celebrity",
+  "version": "1.0.0",
+  "description": "A celebrity game demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eyalliebermann/celebrity.git"
+  },
+  "keywords": [],
+  "author": "Eyal Liebermann",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eyalliebermann/celebrity/issues"
+  },
+  "homepage": "https://github.com/eyalliebermann/celebrity#readme",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
+}
