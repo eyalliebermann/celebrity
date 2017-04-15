@@ -1,27 +1,9 @@
 var express = require('express');
-var app = express();
-
 var bodyParser = require('body-parser');
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:true}));
-
-app.set('port', (process.env.PORT || 5000));
-
-app.use(express.static(__dirname + '/public'));
-
-app.get('/api/v1/celebs', function (req, res) {
-  res.status(200).json(CELEBRITIES);
-});
-
-app.post('/api/v1/celebs',function(req,res){
-  console.log(JSON.stringify(req.body));
-});
+var app = express();
 
 
-app.listen(app.get('port'), function () {
-  console.log('Node app is running on port', app.get('port'));
-});
 
 var CELEBRITIES = [{
     name: 'Madonna',
@@ -45,3 +27,28 @@ var CELEBRITIES = [{
     description: 'A British mathematician'
   }
 ];
+
+var celebrities= CELEBRITIES;
+
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
+
+app.set('port', (process.env.PORT || 5000));
+
+app.use(express.static(__dirname + '/public'));
+
+app.get('/api/v1/celebs', function (req, res) {
+  res.status(200).json(celebrities);
+});
+
+app.post('/api/v1/celebs',function(req,res){
+  console.log(JSON.stringify(req.body));
+  //TODO sanitize
+  celebrities.push({name:req.body.name});
+});
+
+
+app.listen(app.get('port'), function () {
+  console.log('Node app is running on port', app.get('port'));
+});
