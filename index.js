@@ -1,6 +1,11 @@
 var express = require('express');
 var app = express();
 
+var bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
+
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
@@ -10,7 +15,7 @@ app.get('/api/v1/celebs', function (req, res) {
 });
 
 app.post('/api/v1/celebs',function(req,res){
-  console.log(JSON.stringify(req.params));
+  console.log(JSON.stringify(req.body));
 });
 
 
