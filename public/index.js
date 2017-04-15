@@ -24,13 +24,32 @@ $(document)
     .ready(
         function () {
             var i = 0;
+            var interval = null;
+
             $('button').click(function () {
+                loadNewCelebrity();
+            });
+
+            function loadNewCelebrity() {
+                interval && clearInterval(interval);
+                var timerVal = 60;
+                $('#timer').html('<h1>' + timerVal + '</h1>');
+                interval = setInterval(function () {
+                    if (timerVal > 1) {
+                        timerVal -= 1;
+                        $('#timer').html('<h1>' + timerVal + '</h1>');
+                    } else {
+                        $('#timer').html('<h1 style="color:red"><i>Time passed</i></h>');
+                        clearInterval(interval);
+                        interval = 0;
+                    }
+                }, 1000);
                 var celebrity = celebrities[i];
-                $('h1').html(celebrity.name);
+                $('#name').html(celebrity.name);
                 $('img').attr('src', celebrity.image);
                 $('img').attr('alt', celebrity.name + "s picture");
                 $('#description').html(celebrity.description);
                 i += 1;
                 i %= celebrities.length;
-            });
+            }
         });
