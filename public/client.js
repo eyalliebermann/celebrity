@@ -26,7 +26,7 @@ $(document)
             var i = 0;
             var interval = null;
 
-            celebrities = $.getJSON('/api/celebs', function(data) {
+            celebrities = $.getJSON('/api/v1/celebs', function(data) {
                 celebrities = data;
             });
 
