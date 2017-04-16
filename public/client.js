@@ -29,7 +29,7 @@ $(document)
                 }, 1000);
                 var celebrity = celebrities[i];
                 $('#name').html(celebrity.name);
-                $('#name').fitText();
+                $('#name').slabText();
                 i += 1;
                 i %= celebrities.length;
             }
