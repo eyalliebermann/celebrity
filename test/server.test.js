@@ -1,7 +1,7 @@
-var expect = require('chai').expect;
-var app = require('../server');
+const expect = require('chai').expect;
+const app = require('../server');
 
-var request = require('supertest')(app);
+const request = require('supertest')(app);
 
 describe('Getting celebritites', function () {
     var url = '/api/v1/celebs/'
