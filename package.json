@@ -4,7 +4,7 @@
   "description": "A celebrity game demo",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "./node_modules/.bin/mocha --reporter spec",
     "start": "node server.js"
   },
   "repository": {
@@ -20,6 +20,9 @@
   "homepage": "https://github.com/eyalliebermann/celebrity#readme",
   "dependencies": {
     "body-parser": "^1.17.1",
-    "express": "^4.15.2"
+    "chai": "^3.5.0",
+    "express": "^4.15.2",
+    "mocha": "^3.2.0",
+    "request": "^2.81.0"
   }
 }
