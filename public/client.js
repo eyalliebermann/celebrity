@@ -1,11 +1,10 @@
-
 $(document)
     .ready(
         function () {
             var i = 0;
             var interval = null;
 
-            var celebrities = $.getJSON('/api/v1/celebs', function(data) {
+            var celebrities = $.getJSON('/api/v1/celebs', function (data) {
                 celebrities = data;
             });
 
@@ -15,22 +14,31 @@ $(document)
 
             function loadNewCelebrity() {
                 interval && clearInterval(interval);
-                var timerVal = 60;
-                $('#timer').html('<h1>' + timerVal + '</h1>');
+                      $('#next')
+                            .removeClass('btn-warning')
+                            .html('Next Celebrity!');
+
+                var timerVal = 11;
                 interval = setInterval(function () {
                     if (timerVal > 1) {
                         timerVal -= 1;
-                        $('#timer').html('<h1>' + timerVal + '</h1>');
+                        $('#next').html('Next Celebrity ! (' + timerVal + ')');
                     } else {
-                        $('#timer').html('<h1 style="color:red"><i>Time passed</i></h>');
+                        $('#next')
+                            .addClass('btn-warning')
+                            .html('Next Celebrity !!!');
                         clearInterval(interval);
                         interval = 0;
+                        setTimeout(loadNewCelebrity,1000);
                     }
                 }, 1000);
                 var celebrity = celebrities[i];
 
-                $('#name').html(celebrity.name.split(' ').map(function(word){return '<span class="slabtext">'+word+'</span>';}).join(' '));
-                $('#name').slabText();
+                $('#name').html(celebrity.name.split(' ').map(function (word) {
+                        return '<span class="slabtext">' + word + '</span>';
+                    }).join(' '))
+                    .slabText();
+                //.css("background-color", "yellow");;
                 i += 1;
                 i %= celebrities.length;
             }
