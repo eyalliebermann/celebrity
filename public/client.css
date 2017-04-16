@@ -1,0 +1,21 @@
+
+.container {
+   width: 80%;
+  margin: 2em auto;
+  max-width: 600px;
+  background: url('http://www.doblu.com/wp-content/uploads/2011/01/socialnetwork5022.jpg') top center no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  position: relative; 
+}
+
+h1 {
+   text-transform: uppercase; 
+  font-family: futura;
+  font-size: 2em;
+  text-align:center;
+  color: #fff;
+  font-weight: 300;
+}

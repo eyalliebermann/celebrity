@@ -30,9 +30,6 @@ $(document)
                 var celebrity = celebrities[i];
                 $('#name').html(celebrity.name);
                 $('#name').fitText();
-                $('img').attr('src', celebrity.image);
-                $('img').attr('alt', celebrity.name + "s picture");
-                $('#description').html(celebrity.description);
                 i += 1;
                 i %= celebrities.length;
             }
