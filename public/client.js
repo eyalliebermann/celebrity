@@ -28,7 +28,8 @@ $(document)
                     }
                 }, 1000);
                 var celebrity = celebrities[i];
-                $('#name').html(celebrity.name);
+
+                $('#name').html(celebrity.name.split(' ').map(function(word){return '<span class="slabtext">'+word+'</span>';}).join(' '));
                 $('#name').slabText();
                 i += 1;
                 i %= celebrities.length;
