@@ -46,8 +46,8 @@ app.post('/api/v1/celebs',function(req,res){
   console.log(JSON.stringify(req.body));
   //TODO sanitize
   celebrities.push({name:req.body.name});
+  res.status(200).json({status:'OK',count:celebrities.length})
 });
-
 
 app.listen(app.get('port'), function () {
   console.log('Node app is running on port', app.get('port'));
