@@ -3,9 +3,9 @@ const app = require('../server');
 
 const request = require('supertest')(app);
 
-describe('Getting celebritites', function () {
+describe('Getting celebritites',  () => {
     var url = '/api/v1/celebs/'
-    it('returns statu 200', function (done) {
+    it('returns statu 200', (done) => {
         request
             .get(url)
             .then(function (res) {
@@ -14,10 +14,10 @@ describe('Getting celebritites', function () {
             });
     });
 
-    it('returns a valid json', function (done) {
+    it('returns a valid json', (done) => {
         request
             .get(url)
-            .then(function (res) {
+            .then( (res) => {
                 expect(res.body).to.be.json;
                 expect(res.body).length.to.be.greaterThan(0);
                 expect(res.body[0].name).to.match(/^[a-zA-Z]*[a-zA-Z ]*[a-zA-Z]*$/);
@@ -26,7 +26,7 @@ describe('Getting celebritites', function () {
     });
 });
 
-describe('Adding item', function () {
+describe('Adding item',  () => {
     it.skip('rejects empty item', function (done) {});
     it.skip('rejects a non english phrase', function (done) {});
     it.skip('rejets duplicate item', function (done) {});
