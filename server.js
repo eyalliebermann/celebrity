@@ -49,14 +49,24 @@ app.post('/api/v1/celebs', function (req, res) {
   console.log(JSON.stringify(req.body));
 
   //TODO sanitize
-  if (!req.body.name) {
+  let name =req.body.name;
+  if (!name) {
     console.log("Bad Input. No celebrity name in body.");
     res.status(400).json({
       status: 'BadInput'
     });
     return;
   }
-  if (celebrities.map((celeb) => celeb.name.toLowerCase()).find((w) => w === req.body.name.toLowerCase())) {
+
+  if (name && !/^[A-Za-z]*[A-Za-z0-9 ']*[A-Za-z]*$/.test(name)) {
+    console.log("Bad Input. RegEx failure.");
+    res.status(400).json({
+      status: 'BadInput'
+    });
+    return;
+  }
+
+  if (celebrities.map((celeb) => celeb.name.toLowerCase()).find((w) => w === name.toLowerCase())) {
     console.log("Bad Input. Name already found.");
     res.status(409).json({
       status: 'ConflictingInput'
