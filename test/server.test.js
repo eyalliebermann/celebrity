@@ -26,6 +26,7 @@ describe('Getting celebritites', () => {
     });
 });
 
+
 describe('Adding item', () => {
     let url = '/api/v1/celebs/'
 
@@ -38,6 +39,7 @@ describe('Adding item', () => {
                 status: 'BadInput'
             }, done);
     });
+
     it('rejects empty string', (done) => {
         request
             .post(url)
@@ -47,6 +49,7 @@ describe('Adding item', () => {
                 status: 'BadInput'
             }, done);
     });
+
     it('rejects a non english phrase', (done) => {
         request.post(url)
             .send({
@@ -57,7 +60,7 @@ describe('Adding item', () => {
                 status: 'BadInput'
             }, done);
     });
-    
+
     it('rejets duplicate item', (done) => {
         request.post(url)
             .send({
@@ -76,6 +79,7 @@ describe('Adding item', () => {
             });
 
     });
+    
     it.skip('rejects duplicate item the differs on casing', (done) => {});
     it.skip('it rejects the Nth item > 1K', (done) => {});
     it.skip('it rejects a too long item', (done) => {});
