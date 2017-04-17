@@ -28,10 +28,7 @@
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "superagent": "^3.5.2",
-    "supertest": "^3.0.0"
-  //}
-  ,
-  //"devDependencies": {
+    "supertest": "^3.0.0",
     "babel-core": "^6.24.1",
     "babel-loader": "^6.4.1",
     "babel-preset-env": "^1.4.0",
