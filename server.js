@@ -28,11 +28,13 @@ var CELEBRITIES = [{
   }
 ];
 
-var celebrities= CELEBRITIES;
+var celebrities = CELEBRITIES;
 
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -42,11 +44,33 @@ app.get('/api/v1/celebs', function (req, res) {
   res.status(200).json(celebrities);
 });
 
-app.post('/api/v1/celebs',function(req,res){
+app.post('/api/v1/celebs', function (req, res) {
+  console.log('POST ' + req.path);
   console.log(JSON.stringify(req.body));
+
   //TODO sanitize
-  celebrities.push({name:req.body.name});
-  res.status(200).json({status:'OK',count:celebrities.length})
+  if (!req.body.name) {
+    console.log("Bad Input. No celebrity name in body.");
+    res.status(400).json({
+      status: 'BadInput'
+    });
+    return;
+  }
+  if (celebrities.map((celeb) => celeb.name.toLowerCase()).find((w) => w === req.body.name.toLowerCase())) {
+    console.log("Bad Input. Name already found.");
+    res.status(409).json({
+      status: 'ConflictingInput'
+    });
+    return;
+  }
+
+  celebrities.push({
+    name: req.body.name
+  });
+  res.status(200).json({
+    status: 'OK',
+    count: celebrities.length
+  })
 });
 
 app.listen(app.get('port'), function () {

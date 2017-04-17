@@ -4,7 +4,7 @@ const app = require('../server');
 const request = require('supertest')(app);
 
 describe('Getting celebritites', () => {
-    var url = '/api/v1/celebs/'
+    let url = '/api/v1/celebs/'
     it('returns statu 200', (done) => {
         request
             .get(url)
@@ -27,9 +27,55 @@ describe('Getting celebritites', () => {
 });
 
 describe('Adding item', () => {
-    it.skip('rejects empty item', (done) => {});
-    it.skip('rejects a non english phrase', (done) => {});
-    it.skip('rejets duplicate item', (done) => {});
+    let url = '/api/v1/celebs/'
+
+    it('rejects empty string', (done) => {
+        request
+            .post(url)
+            .send('')
+            .expect(400)
+            .expect({
+                status: 'BadInput'
+            }, done);
+    });
+    it('rejects empty string', (done) => {
+        request
+            .post(url)
+            .send({})
+            .expect(400)
+            .expect({
+                status: 'BadInput'
+            }, done);
+    });
+    it('rejects a non english phrase', (done) => {
+        request.post(url)
+            .send({
+                name: 'אבגד'
+            })
+            .expect(400)
+            .expect({
+                status: 'BadInput'
+            }, done);
+    });
+
+    it('rejets duplicate item', (done) => {
+        request.post(url)
+            .send({
+                name: 'Duplicate Item'
+            })
+            .expect(200)
+            .then(() => {
+                request.post(url)
+                    .send({
+                        name: 'Duplicate Item'
+                    })
+                    .expect(409)
+                    .expect({
+                        status: 'ConflictingInput'
+                    }, done);
+            });
+
+    });
     it.skip('rejects duplicate item the differs on casing', (done) => {});
     it.skip('it rejects the Nth item > 1K', (done) => {});
     it.skip('it rejects a too long item', (done) => {});
