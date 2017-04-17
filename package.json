@@ -8,7 +8,7 @@
     "start": "node server.js",
     "build": "./node_modules/.bin/webpack",
     "postbuild": "./node_modules/.bin/webpack",
-    "postbuild": "webpack"
+    "heroku-postbuild": "webpack"
   },
   "repository": {
     "type": "git",
